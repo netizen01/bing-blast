@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      async function openQuery(q) {
+        const w = window.open(
+          `https://www.bing.com/search?q=${q}&form=QBLH&sp=-1&ghc=1&lq=0&sc=11-14&qs=n&sk=&ghsh=0&ghacc=0&ghpl=`,
+          "_blank"
+        );
+        await new Promise((r) => setTimeout(r, 2000));
+        if (w) w.close();
+      }
+
+      async function openLinks1() {
+        const sports = [
+          "Hockey",
+          "Football",
+          "Soccer",
+          "Baseball",
+          "Basketball",
+        ];
+        const postix = [
+          "stats",
+          "results",
+          "schedule",
+          "news",
+          "top plays",
+          "injuries",
+        ];
+        for (const sport of sports) {
+          for (const pf of postix) {
+            await openURL(`${sport}+${pf}`);
+          }
+        }
+      }
+      async function openLinks2() {
+        const sports = [
+          "Dog",
+          "Cat",
+          "Zebra",
+          "Panda",
+          "Bear",
+          "Wolf",
+          "Insect",
+          "Lion",
+          "Fish",
+        ];
+        const postix = ["food", "pet", "habitat", "habits", "diet", "lifespan"];
+        for (const sport of sports) {
+          for (const pf of postix) {
+            await openURL(`${sport}+${pf}`);
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onClick="openLinks1()">CLICK ME - Desktop</button>
+    <button onClick="openLinks2()">CLICK ME - Mobile</button>
+  </body>
+</html>
