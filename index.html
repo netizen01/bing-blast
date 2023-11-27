@@ -1,16 +1,13 @@
 <html>
   <head>
     <script type="text/javascript">
-      async function openQuery(q) {
-        const w = window.open(
-          `https://www.bing.com/search?q=${q}&form=QBLH&sp=-1&ghc=1&lq=0&sc=11-14&qs=n&sk=&ghsh=0&ghacc=0&ghpl=`,
-          "_blank"
-        );
+      async function openQuery(q, w) {
+        w.location.href = `https://www.bing.com/search?q=${q}&form=QBLH&sp=-1&ghc=1&lq=0&sc=11-14&qs=n&sk=&ghsh=0&ghacc=0&ghpl=`;
         await new Promise((r) => setTimeout(r, 2000));
-        if (w) w.close();
       }
 
       async function openLinks1() {
+        const w = window.open("", "_blank");
         const sports = [
           "Hockey",
           "Football",
@@ -28,11 +25,13 @@
         ];
         for (const sport of sports) {
           for (const pf of postix) {
-            await openQuery(`${sport}+${pf}`);
+            await openQuery(`${sport}+${pf}`, w);
           }
         }
+        if (w) w.close();
       }
       async function openLinks2() {
+        const w = window.open("", "_blank");
         const sports = [
           "Dog",
           "Cat",
@@ -47,9 +46,10 @@
         const postix = ["food", "pet", "habitat", "habits", "diet", "lifespan"];
         for (const sport of sports) {
           for (const pf of postix) {
-            await openQuery(`${sport}+${pf}`);
+            await openQuery(`${sport}+${pf}`, w);
           }
         }
+        if (w) w.close();
       }
     </script>
   </head>
