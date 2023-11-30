@@ -14,7 +14,7 @@
           "Soccer",
           "Baseball",
           "Basketball",
-        ];
+        ];   
         const postix = [
           "stats",
           "results",
@@ -23,9 +23,26 @@
           "top plays",
           "injuries",
         ];
-        for (const sport of sports) {
-          for (const pf of postix) {
-            await openQuery(`${sport}+${pf}`, w);
+        const dance = [
+          "Swing",
+          "East Coast Swing",
+          "Flaminko",
+          "Bollywood",
+          "Hip Hop",
+          "Tap",
+          "Jazz",
+          "Ballroom",
+          "Latin",
+        ];
+        const dance_post = [
+          "results",
+          "schedule",
+          "news",
+          "injuries",
+        ];
+        for (const a of dance) {
+          for (const b of dance_post) {
+            await openQuery(`${a}+${b}`, w);
           }
         }
         if (w) w.close();
