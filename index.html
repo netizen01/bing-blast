@@ -1,78 +1,36 @@
 <html>
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="./animals.js"></script>
+    <script src="./bingBlast.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript">
-      async function openQuery(q, w) {
-        w.location.href = `https://www.bing.com/search?q=${q}&form=QBLH&sp=-1&ghc=1&lq=0&sc=11-14&qs=n&sk=&ghsh=0&ghacc=0&ghpl=`;
-        await new Promise((r) => setTimeout(r, 2000));
-      }
+      async function runBlaster() {
+        
+        /**
+         * SEARCH_LIMIT of 40 should be about right to get 150 points
+         * - 5 points per search
+         * - ... the first 3-5 do not net points
+         * - ... sometimes it misses a search
+         */
 
-      async function openLinks1() {
+        const SEARCH_LIMIT = 40;
+        const shuffled = _.shuffle(ANIMALS).slice(0, SEARCH_LIMIT); 
+        const TEN_SECONDS = 10000;
         const w = window.open("", "_blank");
-        const sports = [
-          "Hockey",
-          "Football",
-          "Soccer",
-          "Baseball",
-          "Basketball",
-        ];   
-        const postix = [
-          "stats",
-          "results",
-          "schedule",
-          "news",
-          "top plays",
-          "injuries",
-        ];
-        const dance = [
-          "Swing",
-          "East Coast Swing",
-          "Flaminko",
-          "Bollywood",
-          "Hip Hop",
-          "Tap",
-          "Jazz",
-          "Ballroom",
-          "Latin",
-        ];
-        const dance_post = [
-          "results",
-          "schedule",
-          "news",
-          "injuries",
-        ];
-        for (const a of dance) {
-          for (const b of dance_post) {
-            await openQuery(`${a}+${b}`, w);
-          }
-        }
-        if (w) w.close();
-      }
-      async function openLinks2() {
-        const w = window.open("", "_blank");
-        const sports = [
-          "Dog",
-          "Cat",
-          "Zebra",
-          "Panda",
-          "Bear",
-          "Wolf",
-          "Insect",
-          "Lion",
-          "Fish",
-        ];
-        const postix = ["food", "pet", "habitat", "habits", "diet", "lifespan"];
-        for (const sport of sports) {
-          for (const pf of postix) {
-            await openQuery(`${sport}+${pf}`, w);
-          }
+        for (const animal of shuffled) {
+            await openQuery(`${animal}`, w, TEN_SECONDS);
         }
         if (w) w.close();
       }
     </script>
   </head>
 
-  <body>
-    <button onClick="openLinks1()">CLICK ME - Desktop</button>
-    <button onClick="openLinks2()">CLICK ME - Mobile</button>
+  <body class="bg-slate-800 px-8 py-4 text-center">
+    
+    <div>
+      <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  onClick="runBlaster()"> Run Bing Blast</button>
+    </div>
+    <div class="text-white pt-8">This will open a new window and enter a new search term (a random animal) every 10 seconds. There are ~2800 animals in the list. Click the button and walk away for a few minutes. Make sure you're signed into Bing w/ your Microsoft Account. Do this on a mobile device and a desktop browser! Suggestion: use Edge!</div>
   </body>
 </html>
