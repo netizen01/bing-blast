@@ -2,6 +2,7 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="./animals.js"></script>
+    <script src="./giants.js"></script>
     <script src="./bingBlast.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript">
@@ -14,9 +15,9 @@
          * - ... sometimes it misses a search
          */
 
-        const SEARCH_LIMIT = 40;
-        const shuffled = _.shuffle(ANIMALS).slice(0, SEARCH_LIMIT); 
-        const TEN_SECONDS = 10000;
+        const SEARCH_LIMIT = 100;
+        const shuffled = _.shuffle(GIANTS).slice(0, SEARCH_LIMIT); 
+        const TEN_SECONDS = 15000;
         const w = window.open("", "_blank");
         for (const animal of shuffled) {
             await openQuery(`${animal}`, w, TEN_SECONDS);
