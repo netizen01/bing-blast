@@ -74,11 +74,11 @@ async function runQueries(iterations: number) {
 }
 
 async function runRateLimited() {
-  limit.value = 2;
+  limit.value = 5;
   runQueries(10);
 }
 async function openQuery(query: string, win: Window, msDelay: number) {
-  const url = `https://www.bing.com/search?q=${query}`;
+  const url = `https://www.bing.com/search?q=${query}&form=QBLH&sp=-1&ghc=1&lq=0&sc=11-14&qs=n&sk=&ghsh=0&ghacc=0&ghpl=`;
   win.location.href = url;
   await new Promise((r) => setTimeout(r, msDelay));
 }
